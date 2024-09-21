@@ -1,8 +1,12 @@
 # Perplexity Calculator
 
-A command-line tool to locally calculate the [Perplexity](https://en.wikipedia.org/wiki/Perplexity) (PPL) of a given text using a specified language model. _This is not to be confused with [Perplexity](https://www.perplexity.ai/), the search engine product._
+A command-line tool to locally calculate the [perplexity](https://en.wikipedia.org/wiki/Perplexity) (PPL) of a given text using a specified language model.
 
-This repo largely follows the code provided on the excellent [HuggingFace documentation on Perplexity](https://huggingface.co/docs/transformers/en/perplexity).
+>...perplexity is a measure of uncertainty in the value of a sample from a discrete probability distribution. The larger the perplexity, the less likely it is that an observer can guess the value which will be drawn from the distribution.
+
+_This is not to be confused with [Perplexity](https://www.perplexity.ai/), the search engine product._
+
+This repo largely follows the code provided on the excellent [HuggingFace documentation on perplexity](https://huggingface.co/docs/transformers/en/perplexity).
 
 Supports cuda, mlx (mac m-series) and cpu inference.
 
@@ -14,12 +18,12 @@ Non-HF hosted models (OpenAI, Anthropic, Gemmini-series)
 
 1. Clone this repository:
 
-   ```bash
-   git clone <repository-url>
-   cd <repository-directory>
+   ```shell
+   git clone https://github.com/cezarc1/perplexity
+   cd perplexity
    ```
 
-2. (Optional) If you plan to use the shell script, ensure you have `uv` installed. If not, the script will prompt you to install it if it's not found.
+2. (Optional) If you plan to use the shell script, ensure you have `uv` installed. If not, the script will prompt you to install it if it's not found. See [here](https://github.com/astral-sh/uv?tab=readme-ov-file#highlights) for more info on `uv`.
 
 ## Usage
 
@@ -34,7 +38,8 @@ Non-HF hosted models (OpenAI, Anthropic, Gemmini-series)
 2. Run the script:
 
    ```shell
-   ./calculate_perplexity.sh --model_id "meta-llama/Meta-Llama-3.1-8B-Instruct" --text "It's simple: Overspecialize, and you breed in weakness. It's slow death."
+   ./calculate_perplexity.sh --model_id "meta-llama/Meta-Llama-3.1-8B-Instruct" \
+     --text "It's simple: Overspecialize, and you breed in weakness. It's slow death."
    ```
 
 ### Option 2a: Running as a Python Script
@@ -42,7 +47,9 @@ Non-HF hosted models (OpenAI, Anthropic, Gemmini-series)
 Run the Python script directly with uv:
 
    ```shell
-   uv run --with-requirements requirements.txt calculate_perplexity.py --model_id "meta-llama/Meta-Llama-3.1-8B-Instruct" --text "It's simple: Overspecialize, and you breed in weakness. It's slow death."
+   uv run --with-requirements requirements.txt calculate_perplexity.py \
+     --model_id "meta-llama/Meta-Llama-3.1-8B-Instruct" \
+     --text "It's simple: Overspecialize, and you breed in weakness. It's slow death."
    ```
 
 ### Option 2b: Running as a Python Script (venv)
@@ -60,7 +67,8 @@ Run the Python script directly with uv:
    ```
 
    ```shell
-   python calculate_perplexity.py --model_id "meta-llama/Meta-Llama-3.1-8B-Instruct" --text "It's simple: Overspecialize, and you breed in weakness. It's slow death."
+   python calculate_perplexity.py --model_id "meta-llama/Meta-Llama-3.1-8B-Instruct" \
+   --text "It's simple: Overspecialize, and you breed in weakness. It's slow death."
    ```
 
 ## Arguments
