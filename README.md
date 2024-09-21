@@ -8,11 +8,13 @@ _This is not to be confused with [Perplexity](https://www.perplexity.ai/), the s
 
 This repo largely follows the code provided on the excellent [HuggingFace documentation on perplexity](https://huggingface.co/docs/transformers/en/perplexity).
 
-Supports cuda, mlx (mac m-series) and cpu inference.
+Supports cuda, mlx (mac m-series) and cpu inference on recurrent llms (Llama, Mistral, etc).
 
 ## Coming Soon
 
 Non-HF hosted models (OpenAI, Anthropic, Gemmini-series)
+
+Masked LLMs & Encoder-Decoder LLMs
 
 ## Installation
 
