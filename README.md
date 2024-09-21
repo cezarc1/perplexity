@@ -8,13 +8,13 @@ _This is not to be confused with [Perplexity](https://www.perplexity.ai/), the s
 
 This repo largely follows the code provided on the excellent [HuggingFace documentation on perplexity](https://huggingface.co/docs/transformers/en/perplexity).
 
-Supports cuda, mlx (mac m-series) and cpu inference on recurrent llms (Llama, Mistral, etc).
+Supports cuda, mlx (mac m-series) and cpu inference on recurrent llms (Llama, Mistral, etc) and encoder-decoder LLMs (BERT).
 
 ## Coming Soon
 
 Non-HF hosted models (OpenAI, Anthropic, Gemmini-series)
 
-Masked LLMs & Encoder-Decoder LLMs
+Masked LLMs
 
 ## Installation
 
@@ -40,7 +40,7 @@ Masked LLMs & Encoder-Decoder LLMs
 2. Run the script:
 
    ```shell
-   ./calculate_perplexity.sh --model_id "meta-llama/Meta-Llama-3.1-8B-Instruct" \
+   ./calculate_perplexity.sh --model_id "google/gemma-2-2b-it" \
      --text "It's simple: Overspecialize, and you breed in weakness. It's slow death."
    ```
 
@@ -50,7 +50,7 @@ Run the Python script directly with uv:
 
    ```shell
    uv run --with-requirements requirements.txt calculate_perplexity.py \
-     --model_id "meta-llama/Meta-Llama-3.1-8B-Instruct" \
+     --model_id "google/gemma-2-2b-it" \
      --text "It's simple: Overspecialize, and you breed in weakness. It's slow death."
    ```
 
@@ -69,13 +69,14 @@ Run the Python script directly with uv:
    ```
 
    ```shell
-   python calculate_perplexity.py --model_id "meta-llama/Meta-Llama-3.1-8B-Instruct" \
-   --text "It's simple: Overspecialize, and you breed in weakness. It's slow death."
+   python calculate_perplexity.py --model_id "google/gemma-2-2b-it" \
+     --text "It's simple: Overspecialize, and you breed in weakness. It's slow death."
    ```
 
 ## Arguments
 
 - `--model_id`: The ID of the model to use (e.g., "meta-llama/Meta-Llama-3-8B")
+- `--model_type`: The type of model to use (choices: "recurrent", "encoder_decoder", "masked")
 - `--text`: The text to calculate perplexity on
 - `--stride` (optional): The stride length to use for calculating perplexity (default: 512)
 
