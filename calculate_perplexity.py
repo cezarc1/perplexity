@@ -5,11 +5,21 @@ from tqdm import tqdm
 from transformers import pipeline
 
 
+def get_text_input(args):
+    if args.text:
+        return args.text
+    elif args.text_file:
+        with open(args.text_file, 'r', encoding='utf-8') as file:
+            return file.read()
+    else:
+        raise ValueError("No text or text file provided")
+
+
 def calculate_perplexity(model_id: str, text: str, stride: int = 512) -> float:
     """
     Calculate perplexity of a model on given text using Hugging Face's
     pipeline and accelerate.
-    Adapted from https://huggingface.co/docs/transformers/pipeline_tutorial
+    Adapted from https://huggingface.co/docs/transformers/en/perplexity
 
     Args:
         model_id (str): The HF model ID (e.g., 'meta-llama/Meta-Llama-3-8B')
@@ -66,15 +76,19 @@ if __name__ == "__main__":
         type=str,
         required=True,
         help="The model ID (e.g., 'meta-llama/Meta-Llama-3.1-8B-Instruct')")
-    parser.add_argument("--text",
-                        type=str,
-                        required=True,
-                        help="The text to calculate perplexity on")
+    group = parser.add_mutually_exclusive_group(required=True)
+    group.add_argument("--text",
+                       type=str,
+                       help="The text to calculate perplexity on")
+    group.add_argument("--text_file",
+                       type=str,
+                       help="Path to a text file to calculate perplexity on")
     parser.add_argument(
         "--stride",
         type=int,
         default=512,
         help="The stride length to use for calculating perplexity")
     args = parser.parse_args()
-    perplexity = calculate_perplexity(args.model_id, args.text, args.stride)
+    text_input = get_text_input(args)
+    perplexity = calculate_perplexity(args.model_id, text_input, args.stride)
     print(f"Perplexity: {perplexity:.2f}")
