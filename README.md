@@ -37,11 +37,18 @@ Masked LLMs
    chmod +x calculate_perplexity.sh
    ```
 
-2. Run the script:
+2. Run the script with text:
 
    ```shell
    ./calculate_perplexity.sh --model_id "google/gemma-2-2b-it" \
      --text "It's simple: Overspecialize, and you breed in weakness. It's slow death."
+   ```
+
+   Or with a text file:
+
+   ```shell
+   ./calculate_perplexity.sh --model_id "google/gemma-2-2b-it" \
+     --text_file "path/to/your/text_file.txt"
    ```
 
 ### Option 2a: Running as a Python Script
@@ -52,6 +59,14 @@ Run the Python script directly with uv:
    uv run --with-requirements requirements.txt calculate_perplexity.py \
      --model_id "google/gemma-2-2b-it" \
      --text "It's simple: Overspecialize, and you breed in weakness. It's slow death."
+   ```
+
+   Or with a text file:
+
+   ```shell
+   uv run --with-requirements requirements.txt calculate_perplexity.py \
+     --model_id "google/gemma-2-2b-it" \
+     --text_file "path/to/your/text_file.txt"
    ```
 
 ### Option 2b: Running as a Python Script (venv)
@@ -73,12 +88,22 @@ Run the Python script directly with uv:
      --text "It's simple: Overspecialize, and you breed in weakness. It's slow death."
    ```
 
+   Or with a text file:
+
+   ```shell
+   python calculate_perplexity.py --model_id "google/gemma-2-2b-it" \
+     --text_file "path/to/your/text_file.txt"
+   ```
+
 ## Arguments
 
 - `--model_id`: The ID of the model to use (e.g., "meta-llama/Meta-Llama-3-8B")
 - `--model_type`: The type of model to use (choices: "recurrent", "encoder_decoder", "masked")
 - `--text`: The text to calculate perplexity on
+- `--text_file`: Path to a text file to calculate perplexity on
 - `--stride` (optional): The stride length to use for calculating perplexity (default: 512)
+
+Note: You must provide either `--text` or `--text_file`, but not both.
 
 ## Notes
 
